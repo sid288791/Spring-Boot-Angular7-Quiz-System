@@ -1,0 +1,148 @@
+
+<div class="page-header" id="header">
+  <h2 align="center">Ready For Quiz ?</h2>
+  </div>  
+  <div class="container" id="default" [hidden]="activeQuiz || resultActive" [ngClass]="{fade: startFade}">  
+  <form class="form-inline well well-sm clearfix">
+          <span>
+          </span>
+          
+          <button class="btn btn-warning pull-right" (click)="quizActivate()"><strong>Start Quiz</strong></button>
+  </form>
+  <div id="team">
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-md-12" id="javaTuts">
+                          <h4>Introduction to Java programming</h4>
+                          <p>
+                              JAVA was developed by Sun Microsystems Inc in 1991, later acquired by Oracle Corporation. It was conceived by James Gosling and Patrick Naughton. It is a simple programming language.  Writing, compiling and debugging a program is easy in java.  It helps to create modular programs and reusable code.
+                          </p>
+                          <h4>Main Features of JAVA</h4>
+                          <h5>Java is a platform independent language</h5>
+                          <p>
+                              To understand the meaning of platform independent, we must need to understand the meaning of platform first. A platform is a pre-existing environment in which a program runs, obeying its constraints, and making use of its facilities.
+                              Lets back to the point. During compilation, the compiler converts java program to its byte code. This byte code can run on any platform such as Windows, Linux, Mac/OS etc. Which means a program that is compiled on windows can run on Linux and vice-versa. This is why java is known as platform independent language.
+                          </p>
+                          <h4>Java is an Object Oriented language</h4>
+                          <p>
+                              Object oriented programming is a way of organizing programs as collection of objects, each of which represents an instance of a class.
+                          </p>
+                          <h5>4 main concepts of Object Oriented programming are:</h5>
+                          <h4>Abstraction</h4>
+                          <p>
+                              Abstraction means “The process of forming of general and relevant concept from more complex scenarios”. </p>
+                              <h5>Note 1:</h5><p>Abstraction is used to build complex systems.
+                              Key to simplify a complex design into smaller, manageable parts which then become the components of a bigger and complex system.</p> 
+                          
+                      </div>
+                  </div>    
+              </div>
+          </div>
+      </div>
+
+  </div>
+  </div>  
+
+
+  <div class="container" *ngIf="activeQuiz">
+    <div class="row">
+      <div class="col-xs-8">
+                      <h4>Progress</h4>
+                      <div class="btn-toolbar">
+                          <button type="button" class="btn btn-xs" *ngFor="let questions of question; let i = index" 
+                          [ngClass]="{'btn-info': questions.selected!==null, 'btn-danger': questions.selected === null }" 
+                          (click)="setActiveQuestion(i)" >
+                          <span class="glyphicon" [ngClass]="{'glyphicon-pencil': questions.selected !== null , 'glyphicon-question-sign': questions.selected === null}"></span>
+                          </button>
+                      </div>
+      </div>
+      <div class="col-xs-4">
+          <div class="row">
+              <h4>Legend</h4>
+              <div class="col-xs-3">
+                  <button class="btn btn-info btn-xs">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+                  <p>Answered</p>
+              </div>
+               <div class="col-xs-3">
+                  <button class="btn btn-danger btn-xs">
+                      <span class="glyphicon glyphicon-question-sign"></span>
+                  </button>
+                  <p>Unanswered</p>
+              </div>
+          </div>
+      </div>
+      <div class="row">            
+          <h4>Question</h4>
+           <div class="alert alert-danger" role="alert" *ngIf="error">
+              You have not answered all of the question<button class="close" (click)="error = false">&times</button>
+          </div>           
+          <div class="well well-sm" [hidden]="finlize">
+              <div class="row">
+                  <div class="col-xs-8">
+                      <h4>{{activeQuestion+1 +" ." +quest.questionDesc}}</h4>
+                      <div class="row">
+                          <div class="col-xs-6" *ngFor="let answer of possibleAns let i = index">
+                              <h4 class="answer" [ngClass]="{'bg-info': i === quest.selected}" 
+                              (click)="selectAnswer(i)">{{answer.optionDesc}}</h4>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <button class="btn btn-warning" id="continuebtn" (click)="questionAnswered()">Continue
+              </button>
+          </div>
+          <div class="well well-sm" *ngIf="finlize">
+              <div class="row">
+                  <div class="col-xs-12">
+                      <h4>Are you sure you want to submit your answer ?</h4>
+                      <button class="btn btn-success" (click)="finalAnswer()">Yes</button>
+                      <button class="btn btn-danger" (click)="finlize = false">No</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>  
+</div>
+<div class="container" *ngIf="resultActive">
+  <div class="row">
+      <div class="col-xs-8">
+      <h4>Result</h4>
+          
+      </div>  
+       <div class="col-xs-4">
+         
+      </div>  
+  </div>
+  <div class="row">
+                  <div class="col-xs-12">
+                     
+                      <div class="row">
+                        
+                             <div class="col-xs-3">
+                              <div class="circle c1 img-circle">
+                              <h4 class="blue"><strong>Your Percentage</strong>
+                              </h4>{{ calculatePercent() }} %
+                              </div>
+                         </div>
+                         <div class="col-xs-3">
+                              <div class="circle c1 img-circle">
+                              <h4 class="blue"><strong>Your Score</strong>
+                              </h4>{{correctAnsOutOfQuestion()}}/{{totalNumOfQuestion}}
+                              </div>
+                         </div>
+                         <div class="col-xs-3">
+                              <div class="circle c1 img-circle">
+                              <h4 class="blue"><strong>Your Grade</strong>
+                              </h4>{{getGrade()}}
+                              </div>
+                         </div>
+                      </div>
+                  </div>
+              </div>
+</div>
+
+

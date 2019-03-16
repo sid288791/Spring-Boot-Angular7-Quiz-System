@@ -1,0 +1,62 @@
+@CHARSET "ISO-8859-1";
+#header{
+    margin-top: 0px;
+    border-bottom: 1px solid darkorange;
+}
+#header h4{
+    color: darkorange
+}
+#javaTuts h4{
+    background-color: #F45333;
+    color: white;  
+}
+#javatuts h5{
+    background-color: dodgerblue;
+    color: white;
+}
+.fade{
+    -webkit-transition: opacity 2s;
+    transition: opacity 2s;
+    opacity: 0;
+}
+.default{
+    opacity: 1;
+}
+.answer{
+    padding: 8px 20px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+}
+.answer:hover{
+    cursor: pointer;
+}
+#continuebtn{
+    padding: 6px 70px;
+}
+
+.circle{
+      background: white;
+      color: #ed9c28;
+      padding: 25px;
+      text-align: center;
+      height: 140px;
+      width: 152px;
+      border: 8px solid #3AACBC;
+      transition: all 0.5s;
+      -moz-transition: all 0.5s; 
+      -webkit-transition: all 0.5s; 
+      -o-transition: all 0.5s; 
+      font-size: 18px;
+      font-weight: bold;
+ 
+}
+.c1:hover{
+  background: #39b3d7;
+  color: #ffffff;
+}
+.c1 .blue{
+  color: #39b3d7;
+}
+.c1:hover .blue{
+  color: #ffffff;
+}
